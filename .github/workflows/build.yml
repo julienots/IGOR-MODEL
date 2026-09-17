@@ -12,8 +12,11 @@ jobs:
       - name: Récupérer le code
         uses: actions/checkout@v4
 
-      - name: Extraire le projet (igor-app.zip)
-        run: unzip -o igor-app.zip -d .
+      - name: Extraire le projet
+        run: |
+          ZIP_FILE=$(ls *.zip | head -n 1)
+          echo "Fichier trouvé : $ZIP_FILE"
+          unzip -o "$ZIP_FILE" -d .
 
       - name: Installer Java 17
         uses: actions/setup-java@v4
